@@ -1,5 +1,6 @@
 package com.example.corsospring.security.model;
 
+import com.example.corsospring.model.User;
 import com.example.corsospring.security.RoleType;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -14,15 +15,15 @@ import java.util.Set;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private long id;
     private String Rname;
     @Enumerated(EnumType.STRING)
     @Column(name = "name")
-    private RoleType roleName;
+    private RoleType roleType;
 
     @ManyToMany
     @JoinTable(name = "user_roleType",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<Role> roles = new HashSet<>();
+    private Set<User> users = new HashSet<>();
 }
