@@ -1,11 +1,9 @@
 package com.example.corsospring.repository;
 
 import com.example.corsospring.model.Course;
+import com.example.corsospring.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CourseRepository extends JpaRepository<Course, Long>{
-    Course getCourseById(long id);
-
-
-
+public interface UserRepository extends JpaRepository <User,Long>{
+    User getUserById(long id);
 }
