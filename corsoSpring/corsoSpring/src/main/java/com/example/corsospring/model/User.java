@@ -1,5 +1,7 @@
 package com.example.corsospring.model;
 
+import com.example.corsospring.security.model.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,7 +36,6 @@ public class User {
     @NotBlank
     @Size(max = 120)
     private String password;
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_courses",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -50,12 +51,18 @@ public class User {
     }
     public User() {
     }
+    @ManyToMany
+    @JoinTable(name = "user_roleType",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role>roles = new HashSet<>();
 
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
     }
+
 
 
 

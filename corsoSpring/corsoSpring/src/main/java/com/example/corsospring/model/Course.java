@@ -1,5 +1,6 @@
 package com.example.corsospring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +29,6 @@ public class Course {
 
         @Column(name = "descrizione")
         private String descrizione;
-
         @ManyToMany(cascade ={CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST})
         @JoinTable(name = "user_courses",
         joinColumns = @JoinColumn(name = "course_id"),
