@@ -1,7 +1,9 @@
 package com.example.corsospring.controller;
 
+import com.example.corsospring.exception.ResourceNotFoundException;
 import com.example.corsospring.model.Course;
 import com.example.corsospring.model.Exam;
+import com.example.corsospring.model.User;
 import com.example.corsospring.repository.CourseRepository;
 import com.example.corsospring.repository.ExamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -55,7 +58,15 @@ public class ExamController {
 
         return new ResponseEntity<>(examRepository.save(exam), HttpStatus.OK);
     }
+    @GetMapping("/exam/{valutazione}")
+    public ResponseEntity<?> getExamByValutazione(@PathVariable("valutazione") int valutazione) {
+        Set<Exam> exams= examRepository.findByValutazione(valutazione).orElseThrow(
+                () -> new ResourceNotFoundException("Exam with Vote " + valutazione + " not found.")
+        );
+        return new ResponseEntity<>(exams , HttpStatus.OK);
     }
+
+}
 
 
 
