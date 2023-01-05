@@ -36,5 +36,12 @@ public class Course {
         private Set<User> users = new LinkedHashSet<>();
 
 
+        @OneToMany(cascade ={CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST})
+        @JoinTable(name = "exam_course",
+                joinColumns = @JoinColumn(name = "course_id"),
+                inverseJoinColumns = @JoinColumn(name = "exam_id"))
+        private Set<Exam> exams = new LinkedHashSet<>();
+
+
 
 }
