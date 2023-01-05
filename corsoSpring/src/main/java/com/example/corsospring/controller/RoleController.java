@@ -1,9 +1,7 @@
 package com.example.corsospring.controller;
 
-import com.example.corsospring.model.Course;
-import com.example.corsospring.model.User;
 import com.example.corsospring.repository.RoleRepository;
-import com.example.corsospring.security.model.Role;
+import com.example.corsospring.model.Role;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

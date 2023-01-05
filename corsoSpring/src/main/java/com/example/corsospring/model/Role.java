@@ -1,7 +1,5 @@
-package com.example.corsospring.security.model;
+package com.example.corsospring.model;
 
-import com.example.corsospring.model.User;
-import com.example.corsospring.security.RoleType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
