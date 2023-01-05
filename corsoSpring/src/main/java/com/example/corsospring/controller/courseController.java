@@ -26,6 +26,9 @@ public class courseController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    AuthController authController;
+
     @GetMapping("/course")
     public ResponseEntity<List<Course>> getCourse (){
         List<Course> coursesArrayList = new ArrayList<Course>();
@@ -43,14 +46,14 @@ public class courseController {
         return new ResponseEntity<>(_course, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/course/{id}")
+    @DeleteMapping("/course/delete/{id}")
     public ResponseEntity<HttpStatus> deleteCourse(@PathVariable("id") long id) {
         courseRepository.deleteById(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/course/{id}")
+    @PutMapping("/course/put/{id}")
             public ResponseEntity<Course> updateCourse(@PathVariable("id") long id, @RequestBody Course courseRequest) {
         Course course = courseRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("courseId " + id + "not found"));
@@ -61,7 +64,7 @@ public class courseController {
         return new ResponseEntity<>(courseRepository.save(course), HttpStatus.OK);
     }
 
-    @GetMapping("getcourse/{id}")
+    @GetMapping("/getCourse/{id}")
     public ResponseEntity<Course> getCourseById(@PathVariable Long id) {
         Course course = courseRepository.getCourseById(id);
         if (course == null) {
